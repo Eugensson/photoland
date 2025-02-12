@@ -100,3 +100,31 @@ export const getAllProducts = async ({
     to: limit * (Number(page) - 1) + products.length,
   };
 };
+
+export const getRelatedProductsByCategory = async ({
+  category,
+  productId,
+  limit = 4,
+  page = 1,
+}: {
+  category: string;
+  productId: string;
+  limit?: number;
+  page: number;
+}) => {
+  await connectToDatabase();
+  const skipAmount = (Number(page) - 1) * limit;
+  const conditions = {
+    category,
+    _id: { $ne: productId },
+  };
+  const products = await Product.find(conditions)
+    .sort({ numSales: "desc" })
+    .skip(skipAmount)
+    .limit(limit);
+  const productsCount = await Product.countDocuments(conditions);
+  return {
+    data: JSON.parse(JSON.stringify(products)) as IProduct[],
+    totalPages: Math.ceil(productsCount / limit),
+  };
+};

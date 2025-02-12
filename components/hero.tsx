@@ -23,7 +23,7 @@ export const Hero = () => {
                 <p className="mb-4 text-xl font-medium uppercase leading-tight">
                   Save 35% all dslr cameras
                 </p>
-                <Link href="/shop" className="uppercase text-accent">
+                <Link href="/search" className="uppercase text-accent">
                   Shop now
                 </Link>
               </div>
@@ -38,7 +38,7 @@ export const Hero = () => {
                 <p className="mb-4 text-xl font-medium uppercase leading-tight">
                   Save 25% mirrorless cameras
                 </p>
-                <Link href="/shop" className="uppercase text-accent">
+                <Link href="/search" className="uppercase text-accent">
                   Shop now
                 </Link>
               </div>

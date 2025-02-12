@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FiMenu } from "react-icons/fi";
 
 import {
@@ -8,8 +9,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Logo } from "@/components/logo";
 
-export const CategoryNavMobile = () => {
+import { getAllCategories } from "@/lib/actions/product.actions";
+
+export const CategoryNavMobile = async () => {
+  const categories = await getAllCategories();
+
   return (
     <Sheet>
       <SheetTrigger>
@@ -17,12 +23,23 @@ export const CategoryNavMobile = () => {
       </SheetTrigger>
       <SheetContent side="left">
         <SheetHeader>
-          <SheetTitle>Are you absolutely sure?</SheetTitle>
-          <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </SheetDescription>
+          <SheetTitle className="mb-10">
+            <Logo />
+          </SheetTitle>
+          <SheetDescription className="sr-only">Descr</SheetDescription>
         </SheetHeader>
+        <ul className="flex flex-col gap-y-8">
+          {categories.map((category: string) => (
+            <li key={category}>
+              <Link
+                href={`/products/${category}`}
+                className="uppercase font-medium"
+              >
+                {category} cameras
+              </Link>
+            </li>
+          ))}
+        </ul>
       </SheetContent>
     </Sheet>
   );
