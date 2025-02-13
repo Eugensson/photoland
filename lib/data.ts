@@ -1,24 +1,6 @@
-import bcrypt from "bcryptjs";
 import slugify from "slugify";
 
-import { Data, IProductInput, IUserInput } from "@/types";
-
-const users: IUserInput[] = [
-  {
-    name: "Admin",
-    email: "admin@admin.com",
-    password: bcrypt.hashSync("123456", 10),
-    role: "Admin",
-    emailVerified: true,
-  },
-  {
-    name: "User",
-    email: "user@user.com",
-    password: bcrypt.hashSync("123456", 10),
-    role: "User",
-    emailVerified: true,
-  },
-];
+import { Data, IProductInput } from "@/types";
 
 const products: IProductInput[] = [
   {
@@ -397,7 +379,6 @@ const products: IProductInput[] = [
 ];
 
 const data: Data = {
-  users,
   products,
 };
 
